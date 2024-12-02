@@ -1,4 +1,12 @@
 <div>
     {{-- The Master doesn't talk, he acts. --}}
-    <h1>Desde el componente</h1>
+    {{ $title }}
+    {{ $name }}
+    {{ $email }}
+
+    <input type="text" wire:model='name'>
+
+    <x-button wire:click='save'>Save</x-button>
+
+    {{ $name }}
 </div>
