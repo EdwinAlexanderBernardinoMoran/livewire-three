@@ -11,6 +11,7 @@ class Countries extends Component
     public $country;
     public $active;
     public $count = 0;
+    public $open = false;
 
     public function render()
     {
