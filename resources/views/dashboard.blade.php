@@ -11,6 +11,10 @@
             {{-- @livewire('counter') --}}
             {{-- @livewire('countries') --}}
             @livewire('form')
+
+            <div class="mt-8">
+                @livewire('comments')
+            </div>
         </div>
     </div>
 </x-app-layout>

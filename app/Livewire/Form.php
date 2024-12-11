@@ -31,6 +31,7 @@ class Form extends Component
         // Validacion unicamente solo del formObjets
         $this->postCreate->save();
         $this->posts = Post::all();
+        $this->dispatch('post', 'Post creado con exito');
     }
 
     public function edit($post)
@@ -43,12 +44,14 @@ class Form extends Component
     {
         $this->postEdit->update();
         $this->posts = Post::all();
+        $this->dispatch('post', 'Post actualizado con exito');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
         $this->posts = Post::all();
+        $this->dispatch('post', 'Post eliminado con exito');
     }
 
     public function render()

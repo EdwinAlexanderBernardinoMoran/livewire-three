@@ -199,4 +199,11 @@
         </x-dialog-modal>
     </form>
 
+    @push('js')
+        <script>
+            Livewire.on('post', function (comment) {
+                alert(comment);
+            });
+        </script>
+    @endpush
 </div>
