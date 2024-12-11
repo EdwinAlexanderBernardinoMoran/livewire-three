@@ -36,6 +36,22 @@ class Form extends Component
 
     public function save()
     {
+        // Forma 1 de validar campos
+        // Validaciones, Cambiar mensaje, Cambiar nombre de campo(atributo)
+        $this->validate([
+            'category_id' => 'required',
+            'title' => 'required',
+            'content' => 'required|exists:categories,id',
+            'selectedTags' => 'required|array',
+        ], [
+            // 'category_id.required' => 'El campo id de la categoria es obligatorio.',
+            'title.required' => 'El campo titulo es requerido.',
+            'content.required' => 'El campo contenido es requerido.',
+            'selectedTags.required' => 'El campo tags es requerido.',
+        ], [
+            'category_id' => 'categoria'
+        ]);
+
         $post = Post::create(
             $this->only(['category_id', 'title', 'content'])
         );
@@ -49,7 +65,7 @@ class Form extends Component
 
     public function edit(Post $post)
     {
-
+        $this->resetValidation();
         $this->open = true;
 
         $this->postEditId = $post->id;
@@ -62,6 +78,13 @@ class Form extends Component
 
     public function update()
     {
+        $this->validate([
+            'postEdit.category_id' => 'required|exists:categories,id',
+            'postEdit.title' => 'required',
+            'postEdit.content' => 'required',
+            'postEdit.selectedTags' => 'required|array',
+        ]);
+
         $post = Post::find($this->postEditId);
 
         $post->update(
